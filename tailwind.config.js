@@ -1,7 +1,12 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+          chi: ['Ma Shan Zheng', 'cursive'],
+          noto: ['Noto Sans SC', 'sans-serif'],
+      },
+  },
   },
   plugins: [],
 }
