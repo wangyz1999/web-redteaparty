@@ -22,12 +22,12 @@ const IndexPage = () => {
             </div>
           </main>
         </ParallaxLayer>
-        <ParallaxLayer offset={1} speed={0.5}>
+        <ParallaxLayer offset={1} speed={0.9} >
         <section>
           <div class="skewed"></div>
         </section>
         </ParallaxLayer>
-        <ParallaxLayer offset={2} speed={2}>
+        <ParallaxLayer offset={2} speed={0.5} factor={3}>
         <section>
           <div class="skewed2"></div>
         </section>
@@ -43,17 +43,17 @@ const IndexPage = () => {
           <div className='sec-adv mt-40'>
             <h2 className='tracking-wider text-4xl md:text-6xl font-noto flex justify-center'>为什么选择红茶会</h2>
             <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 content-center mt-20 xl:mt-40 2xl:mx-56 xl:mx-40 lg:mx-20 md:mx-10 gap-y-20 gap-x-10'>
-              <Advantage dscpt="专业"><p className='text-lg'>采用腾讯云VPS，专业主机Linux系统，完全自主搭建。10兆网络供您稳定低延迟</p></Advantage>
-              <Advantage dscpt="安全"><p>圈地系统供您自定义领地规则，如遭到破坏可用CoreProtect针对个人回档</p></Advantage>
-              <Advantage dscpt="自由"><p>没有严格建造限制，可在主城边上造火柴屋，允许红石（前提是不卡服）</p></Advantage>
-              <Advantage dscpt="活跃"><p>游戏只是个幌子，构建网友交流群才是</p></Advantage>
+              <Advantage dscpt="专业"><p className='text-lg'>采用腾讯云VPS，专业主机Linux系统，完全自主搭建。10兆网络供您流畅低延迟游戏</p></Advantage>
+              <Advantage dscpt="安全"><p>圈地系统供您自定义领地规则，如遭到破坏可用 CoreProtect 插件针对个人回档</p></Advantage>
+              <Advantage dscpt="自由"><p>没有严格建造限制，可在主城边上造火柴屋，大范围领地，允许红石（前提是不卡服）</p></Advantage>
+              <Advantage dscpt="活跃"><p>我们有最活跃的群聊，欢迎分享生活、游戏、学业日常。服务器只是个幌子，构建网友交流群才是真正目的</p></Advantage>
             </div>
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={3.5} speed={1}>
           <div className='sec-records mt-xxl xl:mt-32'>
             <h2 className='tracking-wider text-4xl md:text-6xl font-noto flex justify-center'>记录你的生存瞬间</h2>
-            <div className='flex flex-col items-center space-y-32'>
+            <div className='flex flex-col items-center mt-20 xl:mt-40 space-y-32'>
               <Record text={"服务器平面地图帮您寻找理想地形"} image_src={"./map.webp"}>
                 <Link to='https://map.redteaparty.cn'>
                   <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
