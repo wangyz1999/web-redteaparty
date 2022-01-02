@@ -3,18 +3,37 @@ import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import Advantage from '../components/advantage'
 import Posts from '../components/posts'
 import Record from '../components/record'
+import {Helmet} from 'react-helmet';
 
 import "./index.css"
 import { Link } from 'gatsby'
 
+function toggleDark() {
+  const dark = document.querySelector("#dark");
+  const html = document.querySelector("html");
+
+  if (html.classList.contains("dark")) {
+    html.classList.remove("dark");
+    document.body.style = 'background-color: rgb(250 250 249);';
+  }
+  else {
+    html.classList.add("dark");
+    document.body.style = 'background-color: rgb(64 64 64)';
+  }
+}
+
 const IndexPage = () => {
   return (
-    <div className='text-neutral-700 bg-stone-50'>
+    <div className='text-neutral-700 bg-stone-50 dark:bg-neutral-700 dark:text-stone-50'>
+      <Helmet>
+          <style>{'body { background-color: rgb(250 250 249); }'}</style>
+      </Helmet>
       <Parallax pages={7} style={{ top: '0', left: '0' }}>
         <ParallaxLayer offset={0} speed={1}>
           <main>
-            <div className='header flex flex-col justify-center items-center h-screen text-left'>
-              <div className='space-y-6 px-4'>
+            <div className='bg-stone-50 dark:bg-neutral-700 dark:text-stone-50 header flex flex-col justify-center items-center h-screen text-left'>
+              <div className='relative space-y-6 px-4'>
+                <img id='dark' className="h-10 w-10 lg:h-14 lg:w-14 absolute top-0 left-80 lg:left-xxl dark:invert" style={{transform: 'scaleX(-1)'}} src='./moon.webp' alt='' onClick={toggleDark}></img>
                 <h1 className='text-8xl lg:text-xxl font-chi'>红茶会</h1>
                 <p className='text-left text-2xl lg:text-4xl font-noto'>1.18.X 原版多人生存 | 高度自由 | 娱乐养老 | 精英怪</p>
                 <p className='text-left text-2xl lg:text-4xl font-noto'>QQ群: 170912922</p>
@@ -24,12 +43,12 @@ const IndexPage = () => {
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={0.9} >
         <section>
-          <div class="skewed"></div>
+          <div class="skewed dark:invert"></div>
         </section>
         </ParallaxLayer>
         <ParallaxLayer offset={2} speed={0.5} factor={3}>
         <section>
-          <div class="skewed2"></div>
+          <div class="skewed2 dark:brightness-50"></div>
         </section>
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={1}>
@@ -40,7 +59,7 @@ const IndexPage = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={2} speed={1}>
-          <div className='sec-adv mt-40'>
+          <div className='sec-adv mt-40 '>
             <h2 className='tracking-wider text-4xl md:text-6xl font-noto flex justify-center'>为什么选择红茶会</h2>
             <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 content-center mt-20 xl:mt-40 2xl:mx-56 xl:mx-40 lg:mx-20 md:mx-10 gap-y-20 gap-x-10'>
               <Advantage dscpt="专业"><p className='text-lg'>采用腾讯云VPS，专业主机Linux系统，完全自主搭建。10兆网络供您流畅低延迟游戏</p></Advantage>
@@ -51,7 +70,7 @@ const IndexPage = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={3.5} speed={1}>
-          <div className='sec-records mt-xxl xl:mt-32'>
+          <div className='sec-records mt-xxl xl:mt-32 bg-stone-50 dark:bg-neutral-700 dark:text-stone-50'>
             <h2 className='tracking-wider text-4xl md:text-6xl font-noto flex justify-center'>记录你的生存瞬间</h2>
             <div className='flex flex-col items-center mt-20 xl:mt-40 space-y-32'>
               <Record text={"服务器平面地图帮您寻找理想地形"} image_src={"./map.webp"}>
@@ -79,7 +98,7 @@ const IndexPage = () => {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={5} speed={1}>
-          <div className='sec-posts grid grid-cols-1 lg:grid-cols-2 content-center 2xl:mx-72 xl:mx-64 lg:mx-32 md:mx-10 gap-y-32 lg:gap-y-64 gap-x-72'>
+          <div className='sec-posts grid grid-cols-1 lg:grid-cols-2 content-center 2xl:mx-72 xl:mx-64 lg:mx-32 md:mx-10 gap-y-32 lg:gap-y-64 gap-x-72 bg-stone-50 dark:bg-neutral-700 dark:text-stone-50'>
             <Posts dscpt="新手指南" img_src={"./wolf.webp"}></Posts>
             <Posts dscpt="更新日志" img_src={"./book.webp"}></Posts>
             <Posts dscpt="历来活动" img_src={"./diamond.webp"}></Posts>
