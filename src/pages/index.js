@@ -8,6 +8,7 @@ import {Helmet} from 'react-helmet';
 import "./index.css"
 import { Link } from 'gatsby'
 
+
 function toggleDark() {
   const dark = document.querySelector("#dark");
   const html = document.querySelector("html");
@@ -20,6 +21,29 @@ function toggleDark() {
     html.classList.add("dark");
     document.body.style = 'background-color: rgb(64 64 64)';
   }
+}
+
+function getPlayers() {
+  return fetch('https://api.mcsrvstat.us/2/mc.redteaparty.cn')
+  .then((response) => response.json())
+  .then((responseJson) => {
+    var player_count = document.getElementById("online-count")
+    player_count.textContent = responseJson['players']['online'];
+    for (var i=0; i<responseJson['players']['list'].length; i++) {
+      const para = document.createElement("div");
+      para.className = 'player-head text-xl grid place-items-center'
+      const node = document.createTextNode(responseJson['players']['list'][i]);
+      para.appendChild(node);
+      var img = document.createElement('img');
+      img.src = 'https://mc-heads.net/avatar/' + responseJson['players']['list'][i] + '/50.png/';
+      para.appendChild(img);
+      const element = document.getElementById("online-player");
+      element.appendChild(para);
+  }
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 }
 
 const IndexPage = () => {
@@ -52,10 +76,15 @@ const IndexPage = () => {
         </section>
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={1}>
-          <div className='online flex justify-center items-center h-screen space-x-3 text-white'>
-            <p className='tracking-wider text-3xl'>服务器当前在线</p>
-            <p className='text-2xl'>-</p>
-            <p className='text-3xl'>人</p>
+          <div className='h-screen flex'>
+            <div className='m-auto space-y-20'>
+              <div className='online flex justify-center items-center space-x-3 text-white'>
+                <p className='tracking-wider text-3xl'>服务器当前在线</p>
+                <p className='text-2xl' id='online-count'>-</p>
+                <p className='text-3xl'>人</p>
+              </div>
+              <div id='online-player' className='flex justify-center items-center space-x-10 space-y-5'></div>
+            </div>
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={2} speed={1}>
@@ -99,15 +128,15 @@ const IndexPage = () => {
         </ParallaxLayer>
         <ParallaxLayer offset={5} speed={1}>
           <div className='sec-posts grid grid-cols-1 lg:grid-cols-2 content-center 2xl:mx-72 xl:mx-64 lg:mx-32 md:mx-10 gap-y-32 lg:gap-y-64 gap-x-72 bg-stone-50 dark:bg-neutral-700 dark:text-stone-50'>
-            <Posts dscpt="新手指南" img_src={"./wolf.webp"}></Posts>
-            <Posts dscpt="更新日志" img_src={"./book.webp"}></Posts>
-            <Posts dscpt="历来活动" img_src={"./diamond.webp"}></Posts>
-            <Posts dscpt="禁封记录" img_src={"./barrier.webp"}></Posts>
+            <Link to='https://docs.qq.com/doc/p/16c1f3992260daae4ef1024e2b9fd56744b9e871'><Posts dscpt="新手指南" img_src={"./book.webp"}></Posts></Link>
+            <Link to='https://docs.qq.com/sheet/DVkhSZGJ6ck96a3lH'><Posts dscpt="禁封记录" img_src={"./barrier.webp"}></Posts></Link>
+            <Link to='https://www.mcbbs.net/thread-1197683-1-1.html'><Posts dscpt="MCBBS中文论坛" img_src={"./wolf.webp"}></Posts></Link>
+            <Link to='https://play.mcmod.cn/sv20184925.html'><Posts dscpt="MC百科" img_src={"./diamond.webp"}></Posts></Link>
           </div>
         </ParallaxLayer>
       </Parallax>
     </div>
   )
 }
-
+getPlayers()
 export default IndexPage
